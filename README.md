@@ -1,7 +1,10 @@
 # Introduction
     Dive into the data job market! Focusing on data analyst roles, this project explores top-paying jobs, in-demand skills, and where high demand meets high salary in data analystics
 
-    SQL queries? Check them out here: [project_sql folder](/sql_load/Project_sql/)
+    SQL queries? Check them out here: 
+    [Project_sql folder](/sql_load/Project_sql/)
+
+    [project_sql folder](/sql_load/Project_sql/)
     
 # Background
 Driven by a quest to navigate the data analyst job market more effectively, this project was born from a desire to pinpoint top-paid and in-demand skills, streamlining others work to find optimal jobs.
@@ -44,12 +47,65 @@ where job_location in ('Australia','Brazil','Anywhere') AND
 salary_year_avg is not null AND
 job_title_short = 'Data Analyst'
 order by salary_year_avg;
-
-
-SELECT job_location
-from job_postings_fact
-limit 500;
 ```
+**💰 Insights on Top-Paying Data Analyst Jobs**
+
+**🔎 Key Findings from the SQL Query:**
+
+**🔎 Key Findings from the SQL Query:**
+- The query focuses on high-paying remote jobs by filtering locations like Australia, Brazil, and Anywhere (fully remote).
+- The query focuses on high-paying remote jobs by filtering locations like Australia, Brazil, and Anywhere (fully remote).
+- This suggests that top-paying Data Analyst roles are not restricted to the U.S./Europe but extend globally.
+
+**2️⃣ 💲 Salary Disparities by Location**
+- The ORDER BY salary_year_avg clause sorts jobs by salary, helping identify the best-paying roles.
+- Expect Australia to offer higher salaries compared to other locations due to market demand and cost of living.
+
+**3️⃣ 🏢 Company Influence on Salary**
+- By joining the company_dim table, we can identify which companies pay the highest salaries for Data Analysts.
+- Certain tech and finance companies tend to offer above-average compensation.
+
+**4️⃣ 📅 Fresh Job Listings Considered**
+- Including job_posted_date allows filtering by recent postings, ensuring relevance.
+
+
+### 2. skills required for the top-paying roles
+
+```sql
+with top_job_location AS(
+SELECT
+    job_id,
+    job_title_short,
+    salary_year_avg,
+    cd.name as company_name
+from job_postings_fact jf
+left join company_dim cd on jf.company_id = cd.company_id
+where job_location in ('Australia','Brazil','Anywhere') AND
+salary_year_avg is not null AND
+job_title_short = 'Data Analyst'
+order by salary_year_avg
+limit 10
+)
+
+select 
+    jl.*,
+    sd.skills
+from top_job_location jl
+inner join skills_job_dim sjd on jl.job_id = sjd.job_id
+inner join skills_dim sd on sjd.skill_id = sd.skill_id
+order by company_name;
+```
+**Key Insights on Data Analyst Skills (2023)SQL & Excel are Essential** 
+
+- Both appear most frequently in job postings, highlighting their importance for data manipulation and analysis.
+- Programming is Valued but Less Common 
+- Python and R are mentioned but less frequently than SQL and Excel.
+SAS Still Has Demand 
+- Some industries continue to use SAS, though open-source tools are more popular.
+ 
+🔹 **Takeaway:** Prioritize SQL & Excel, then enhance with Python or R for a competitive edge. Let me know if you need deeper insights!
+
+
 # What I learned
 
 Throughout this adventure, I've turbocharged my SQL toolkit with some serious firepower:
