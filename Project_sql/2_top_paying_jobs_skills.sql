@@ -25,8 +25,8 @@ select
     jl.*,
     sd.skills
 from top_job_location jl
-inner join skills_job_dim skd on jl.job_id = skd.job_id
-inner join skills_dim sd on skd.skill_id = sd.skill_id
+inner join skills_job_dim sjd on jl.job_id = sjd.job_id
+inner join skills_dim sd on sjd.skill_id = sd.skill_id
 order by company_name;
 
 select * from skills_dim limit 10;
