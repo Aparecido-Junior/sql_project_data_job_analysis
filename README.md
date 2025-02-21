@@ -1,15 +1,12 @@
 # Introduction
-    Dive into the data job market! Focusing on data analyst roles, this project explores top-paying jobs, in-demand skills, and where high demand meets high salary in data analystics
+Dive into the Data Job Market! Focusing on data analyst roles📊, this project explores top-paying jobs 💰, in-demand skills 🧠, and where high demand 📈 meets high salary 💵 in data analytics 🔥. Get ready to uncover key insights!
 
-    SQL queries? Check them out here: 
-    [Project_sql folder](/sql_load/Project_sql/)
-
-    [project_sql folder](/sql_load/Project_sql/)
+SQL queries? Check them out here: [Project_sq folder](https://github.com/Aparecido-Junior/sql_project_data_job_analysis) 
     
+     
 # Background
-Driven by a quest to navigate the data analyst job market more effectively, this project was born from a desire to pinpoint top-paid and in-demand skills, streamlining others work to find optimal jobs.
+Driven by a quest to navigate the data analyst job market more effectively 🚀, this project was born from a desire to pinpoint top-paid 💰 and in-demand skills 📊, streamlining others' work to find optimal jobs 🎯.
 
-Data hails from my [SQL Course](Link). It's packed with insights on job titles, salaries, locations and essential skills.
 
 ### The questions I wanted to answer through my SQL queries were:
 1. What are the top-paying jbs for my role?
@@ -27,10 +24,12 @@ For my deep dieve into the data analyst job market, I harnessed the power of sev
 - **Git & Github**: Essetial for version control and sharing my SQL scripts and analysis, ensuring collaboration and project tracking.
 
 # The Analysis
-Each Query for this project aimed at investigating specific aspects of the data analyst job market. Here's how I approached each question:
+Each query for this project aimed at investigating specific aspects of the data analyst job market.📊 🔍
+
+Here's how I approached each question:
 
 ### 1. Top Paying Data Analyst Jobs
-To Identify the highest-paying roles, I filtered data analyst positions by average yearly salary and location, focusing on remote jobs. This query highlights the high paying opportunities in the field.
+To identify the highest-paying roles 💰, I filtered data analyst positions by average yearly salary and location, focusing on remote jobs 🌍. This query highlights the high-paying opportunities in the field 📊.
 
 ```sql
 SELECT
@@ -43,10 +42,11 @@ SELECT
     cd.name as company_name
 from job_postings_fact jf
 left join company_dim cd on jf.company_id = cd.company_id
-where job_location in ('Australia','Brazil','Anywhere') AND
-salary_year_avg is not null AND
-job_title_short = 'Data Analyst'
-order by salary_year_avg;
+where job_location in ('Australia','Brazil','Anywhere') 
+ANDsalary_year_avg is not null 
+ANDjob_title_short = 'Data Analyst'
+order by salary_year_avg
+limit 10;
 ```
 **💰 Insights on Top-Paying Data Analyst Jobs**
 
