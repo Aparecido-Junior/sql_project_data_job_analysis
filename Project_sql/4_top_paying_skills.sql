@@ -6,137 +6,109 @@ Answer: What are the top skills based on salary?
 helps identify the most financially rewarding skills to acquire or improve
 */
 
-select
-    sd.skills,
-    round(avg(salary_year_avg),0) as avg_salary
-from job_postings_fact jf
-inner join skills_job_dim sjd on jf.job_id = sjd.job_id
-inner join skills_dim sd on sjd.skill_id = sd.skill_id
-where 
-  salary_year_avg is not null 
-  and job_location in ('Brasil','Australia')
-group by 
-  skills
-ORDER BY 
-  avg_salary DESC
-limit 25;
+SELECT sd.skills,
+       Round(Avg(salary_year_avg), 0) AS avg_salary
+FROM   job_postings_fact jf
+       INNER JOIN skills_job_dim sjd
+               ON jf.job_id = sjd.job_id
+       INNER JOIN skills_dim sd
+               ON sjd.skill_id = sd.skill_id
+WHERE  salary_year_avg IS NOT NULL
+       AND job_location IN ( 'Brasil', 'Australia' )
+GROUP  BY skills
+ORDER  BY avg_salary DESC
+LIMIT  25; 
 
-select * from job_postings_fact limit 5;
 
 /*
 
-📊 Key Insights on Data Analyst Skills & Salaries 💰
-🚀 1. Highest Paying Skill: 🛠️ svn – 💵 $400,000 🔝
-📉 2. Lowest Paying Skill: 📊 scala – 💵 $115,480 ⬇️
-📊 3. Average Salary Across All Skills: 💰 $142,931 📈
+Key Insights: Highest-Paying Skills in the Job Market 💰📊
 
-💡 Key Observations:
-✅ Niche Tech Skills Pay More: 🏆 svn, solidity, & couchbase lead with premium salaries, likely due to low supply & high demand.
-🔍 Common Data Tools Pay Well: 🔢 scala, airflow, & bitbucket still offer strong pay but are on the lower end.
-📈 AI & ML Skills Hold Value: 🤖 tensorflow, pytorch, & keras show competitive salaries, indicating high demand for AI expertise.
+1️⃣ Top High-Paying Skills 🏆
+Analyzing average salaries associated with different skills reveals the most lucrative ones:
 
-💬 Want salary trend visualizations? Let me know! 📉📊
+🔥 Top Tier (💰💰💰 155,500 BRL/year)
+
+AWS – Cloud computing expertise is in high demand.
+Snowflake – A critical tool for cloud data warehousing.
+Spark & Hadoop – Big data processing frameworks, crucial for data engineering roles.
+💡 Mid-Tier (💰💰 136,000 - 138,000 BRL/year)
+
+Go – A high-performance programming language used in backend and cloud services.
+Excel – Still lucrative for business intelligence and financial roles.
+Python & R – The go-to languages for data science and machine learning.
+📊 Lower-Tier (💰 109,000 - 132,500 BRL/year)
+
+NoSQL & Flow – Important for database management and workflow automation.
+Matlab – Often used in engineering and quantitative analysis.
+SQL (109,625 BRL) – Despite its high demand, it falls behind in salary compared to Python and AWS.
+🚨 Low-Paying Skill (💰 30,000 BRL/year)
+
+Tableau – Despite being a widely used visualization tool, it is associated with lower salaries.
+2️⃣ What This Means for Your Career 🚀
+Big Data & Cloud skills (AWS, Spark, Hadoop, Snowflake) lead to the highest salaries.
+Python & R are still highly valuable, especially for Data Science roles.
+SQL remains essential but is not as lucrative as cloud and big data technologies.
+Excel still commands good salaries, proving its importance in business and finance.
+Tableau alone may not lead to high salaries but can be valuable when combined with other skills.
+
+3️⃣ Next Steps for Career Growth 🎯
+Invest in cloud computing (AWS, Snowflake) and big data (Spark, Hadoop) to maximize salary potential.
+Enhance Python or R skills for data science and analytics roles.
+Combine SQL with NoSQL databases and cloud skills for a better-paying career path.
 
 [
   {
-    "skills": "svn",
-    "avg_salary": "400000"
+    "skills": "aws",
+    "avg_salary": "155500"
   },
   {
-    "skills": "solidity",
-    "avg_salary": "179000"
+    "skills": "snowflake",
+    "avg_salary": "155500"
   },
   {
-    "skills": "couchbase",
-    "avg_salary": "160515"
+    "skills": "spark",
+    "avg_salary": "155500"
   },
   {
-    "skills": "datarobot",
-    "avg_salary": "155486"
+    "skills": "hadoop",
+    "avg_salary": "155500"
   },
   {
-    "skills": "golang",
-    "avg_salary": "155000"
+    "skills": "go",
+    "avg_salary": "138000"
   },
   {
-    "skills": "mxnet",
-    "avg_salary": "149000"
+    "skills": "excel",
+    "avg_salary": "138000"
   },
   {
-    "skills": "dplyr",
-    "avg_salary": "147633"
+    "skills": "python",
+    "avg_salary": "136167"
   },
   {
-    "skills": "vmware",
-    "avg_salary": "147500"
+    "skills": "r",
+    "avg_salary": "136167"
   },
   {
-    "skills": "terraform",
-    "avg_salary": "146734"
+    "skills": "nosql",
+    "avg_salary": "132500"
   },
   {
-    "skills": "twilio",
-    "avg_salary": "138500"
+    "skills": "flow",
+    "avg_salary": "132500"
   },
   {
-    "skills": "gitlab",
-    "avg_salary": "134126"
+    "skills": "matlab",
+    "avg_salary": "132500"
   },
   {
-    "skills": "kafka",
-    "avg_salary": "129999"
+    "skills": "sql",
+    "avg_salary": "109625"
   },
   {
-    "skills": "puppet",
-    "avg_salary": "129820"
-  },
-  {
-    "skills": "keras",
-    "avg_salary": "127013"
-  },
-  {
-    "skills": "pytorch",
-    "avg_salary": "125226"
-  },
-  {
-    "skills": "perl",
-    "avg_salary": "124686"
-  },
-  {
-    "skills": "ansible",
-    "avg_salary": "124370"
-  },
-  {
-    "skills": "hugging face",
-    "avg_salary": "123950"
-  },
-  {
-    "skills": "tensorflow",
-    "avg_salary": "120647"
-  },
-  {
-    "skills": "cassandra",
-    "avg_salary": "118407"
-  },
-  {
-    "skills": "notion",
-    "avg_salary": "118092"
-  },
-  {
-    "skills": "atlassian",
-    "avg_salary": "117966"
-  },
-  {
-    "skills": "bitbucket",
-    "avg_salary": "116712"
-  },
-  {
-    "skills": "airflow",
-    "avg_salary": "116387"
-  },
-  {
-    "skills": "scala",
-    "avg_salary": "115480"
+    "skills": "tableau",
+    "avg_salary": "30000"
   }
 ]
 

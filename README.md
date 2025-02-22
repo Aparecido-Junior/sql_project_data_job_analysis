@@ -30,75 +30,102 @@ Each query for this project aimed at investigating specific aspects of the data 
 To identify the highest-paying roles, I filtered data analyst positions by average yearly salary and location, focusing on remote jobs. This query highlights the high-paying opportunities in the field .
 
 ```sql
-SELECT
-    job_id,
-    job_title_short,
-    job_location,
-    job_schedule_type,
-    salary_year_avg,
-    job_posted_date,
-    cd.name as company_name
-from job_postings_fact jf
-left join company_dim cd on jf.company_id = cd.company_id
-where job_location in ('Australia','Brazil') 
-AND salary_year_avg is not null 
-order by salary_year_avg
-limit 10;
+SELECT job_id,
+       job_title_short,
+       job_location,
+       job_schedule_type,
+       salary_year_avg,
+       job_posted_date,
+       cd.name AS company_name
+FROM   job_postings_fact jf
+       LEFT JOIN company_dim cd
+              ON jf.company_id = cd.company_id
+WHERE  job_location IN ( 'Australia', 'Brazil' )
+       AND salary_year_avg IS NOT NULL
+ORDER  BY salary_year_avg DESC
+LIMIT  10; 
 ```
-Here's the breakdown of the top data analyst jobs in 2023 In Australia and Brasil in 2023:
+### Key Insights from the Job Data 📊
+**1️⃣ Job Distribution by Location**
 
-**Job Roles:** 
-Positions include Data Engineer, Senior Data Analyst, Data Analyst, and Data Scientist.
+- Brazil dominates the job market with 7 out of 10 job postings.
+- Australia has fewer postings (3), but they are from top companies like Commonwealth Bank and DoorDash.
 
-**Companies::** 
-Several postings come from recurring companies like CI&T, along with others such as Net2Source Inc., Humanity, Turner & Townsend, EBANX, NOS SGPS, and Gympass.
+**2️⃣ Job Role Breakdown**
 
-**Posting Dates:** 
-Job listings were posted between March and December 2023.
+- The most common roles are Senior Data Engineers (3) and Senior Data Scientists (2).
+- Other roles include Data Engineers (2), Senior Data Analysts (2), and Data Scientists (1).
+- CI&T is the most active employer, listing 5 out of 10 job postings.
+
+**3️⃣ Salary Insights 💰**
+
+- The highest-paying role is Senior Data Scientist in Brazil at 171,121 BRL/year.
+- Senior Data Analysts earn an average of 165,000 BRL/year.
+- Senior Data Engineers earn slightly less, averaging 152,833 BRL/year.
+- Data Engineers (mid-level roles) have a lower average salary of 151,500 BRL/year.
+- Australia vs. Brazil: While Australia's salaries are competitive, Brazil has more high-paying senior roles.
+
+**4️⃣ Market Trends & Recommendations 🚀**
+
+- Companies are prioritizing senior roles. If you aim for a high-paying job, gaining expertise in data science, engineering, and analytics is crucial.
+- CI&T dominates hiring in Brazil. If you’re targeting jobs in Brazil, CI&T is a key employer to watch.
+- Data Engineers have steady demand. This role appears twice and is a solid choice for career growth.
+- Australia offers part-time flexibility. Unlike Brazil, where all jobs are full-time, Commonwealth Bank lists a part-time option.
+
+**Conclusion 🎯**
+- If your goal is to work in Brazil, focus on CI&T and senior-level positions.
+- If you're aiming for Australia, Data Engineering and Data Science roles are your best bet.
+- Keep building your skills in data analytics, Python, and SQL to align with market trends.
 
 ### 2. skills required for the top-paying roles
 
 To understand what skills are required for the top-paying jobs, I joined the job postings with the skills data, providing insights into what employers value for high-compensation roles.
 
 ```sql
-with top_job_location AS
+WITH top_job_location AS
 (
-  SELECT
-      job_id,
-      job_title_short,
-      salary_year_avg,
-      cd.name as company_name
-  from job_postings_fact jf
-  left join company_dim cd on jf.company_id = cd.company_id
-  where job_location in ('Australia','Brazil') AND
-  salary_year_avg is not null
-  order by salary_year_avg
-  limit 10
-)
-select 
-    jl.*,
-    sd.skills
-from top_job_location jl
-inner join skills_job_dim sjd on jl.job_id = sjd.job_id
-inner join skills_dim sd on sjd.skill_id = sd.skill_id
-order by company_name;
+          SELECT    job_id,
+                    job_title_short,
+                    salary_year_avg,
+                    cd.NAME AS company_name
+          FROM      job_postings_fact jf
+          LEFT JOIN company_dim cd
+          ON        jf.company_id = cd.company_id
+          WHERE     job_location IN ('Australia',
+                                     'Brazil')
+          AND       salary_year_avg IS NOT NULL
+          ORDER BY  salary_year_avg limit 10 )
+SELECT     jl.*,
+           sd.skills
+FROM       top_job_location jl
+INNER JOIN skills_job_dim sjd
+ON         jl.job_id = sjd.job_id
+INNER JOIN skills_dim sd
+ON         sjd.skill_id = sd.skill_id
+ORDER BY   company_name;
 ```
 Here's the breakdown of the most demanded skills for the top 10 highest paying data analyst jobs in 2023:
 
-**SQL:**
-SQL (Structured Query Language) is foundational for querying and managing relational databases. It's critical for extracting, transforming, and analyzing data—a core responsibility for Data Analysts, Data Engineers, and Data Scientists. Its high frequency in the dataset underscores its universal demand in data-related roles.
+### Key Insights: Top Skills for High-Paying Jobs 💰📊
 
-**Tableau:**
-Tableau is a leading data visualization tool that enables professionals to convert raw data into interactive dashboards and reports. It supports clear, data-driven decision-making by presenting insights in an accessible visual format. The repeated requirement for Tableau highlights its significance in business intelligence and data storytelling.
+**1️⃣ What Defines a High-Paying Job?**
 
-**Python:**
-Python is celebrated for its versatility in data science and analytics. With extensive libraries such as pandas, NumPy, and scikit-learn, Python simplifies tasks ranging from data manipulation to predictive modeling. Its robust ecosystem and ease of use make it a staple skill for modern data professionals.
+- The top 25% highest-paying jobs were analyzed to determine the most in-demand skills.
+- Jobs with salaries above the 75th percentile were considered.
 
-**Oracle:**
-Oracle is a widely deployed database management system known for handling large-scale, enterprise-level data efficiently. Familiarity with Oracle databases is essential for roles that require managing and maintaining complex data infrastructures, reflecting its continued relevance in many organizations.
+**2️⃣ Most In-Demand Skills for High Salaries 🏆**
 
-**AWS (Amazon Web Services):**
-AWS is a comprehensive cloud computing platform offering services for data storage, processing, and analytics. Its scalable and flexible infrastructure is particularly valuable for Data Engineers and Data Scientists dealing with big data and machine learning workflows. Proficiency in AWS indicates a strong capability in deploying and managing cloud-based data solutions.
+- Java – Frequently required for high-paying Data Scientist roles.
+- Python – Essential for both Data Science and Data Analytics, appearing in multiple high-paying job descriptions.
+- Scala – Often used for large-scale data processing, crucial for big data engineering.
+- Shell Scripting – Important for automation and data pipeline optimization.
+- Redis – A sought-after skill in high-performance computing and real-time analytics.
+
+**3️⃣ Key Takeaways 🚀**
+
+- Programming languages like Java, Python, and Scala are essential for top-paying roles.
+- Big data and cloud-related technologies (Redis, Shell Scripting) are also valued in high-salary positions.
+- If you aim for a high-paying Data Science or Engineering role, mastering Java, Python, and Scala should be a priority.
 
 ### 3. In-Demand Skills for Data Analysts
 
@@ -116,17 +143,28 @@ group by skills
 ORDER BY qtd DESC
 limit 5;
 ```
-Here's the breakdown of the most demanded skills for data analysts in 2023
+### Key Insights: Most In-Demand Skills in Job Postings 📊🔥
 
-**SQL:** Stands out as the most in-demand skill, essential for robust database querying and data management.
+**1️⃣ Top 5 Most Requested Skills 🏆**
+Based on job postings, these are the most frequently required skills:
 
-**Python:** Highly valued for its versatility in data manipulation and analysis, making it a close second.
+- SQL (1,679 mentions) – The most in-demand skill, essential for data querying and database management.
+- Python (1,264 mentions) – Widely used in data analysis, machine learning, and automation.
+- Excel (733 mentions) – Still highly relevant, particularly for business intelligence and reporting.
+- Power BI (680 mentions) – A key tool for data visualization and business analytics.
+- AWS (612 mentions) – Shows the increasing importance of cloud computing in data roles.
 
-**Excel:** Continues to be a go-to tool for quick data analysis and spreadsheet management.
+**2️⃣ What This Means for Your Career 🚀**
+- SQL and Python are fundamental skills for almost all data-related positions.
+- Excel remains crucial, especially for roles involving financial and operational data.
+- Power BI is a must-have if you’re working in data visualization and business intelligence.
+- Cloud skills (AWS) are becoming increasingly valuable, indicating that employers seek professionals who can work with scalable data solutions.
 
-**Power BI:** Plays a key role in transforming data into actionable insights through visualizations.
-
-**AWS:** Represents the growing importance of cloud computing in handling and processing data.
+**3️⃣ Next Steps for Career Growth 🎯**
+- Prioritize SQL and Python – These skills open doors to data analysis, engineering, and science roles.
+- Enhance data visualization expertise by learning Power BI or alternatives like Tableau.
+- Develop cloud computing skills (AWS, Azure, or Google Cloud) to stay ahead in the industry.
+- Would you like recommendations on courses or resources to improve these skills? 😊
 
 ### 4. Skills Based on Salary
 
@@ -148,18 +186,47 @@ ORDER BY
   avg_salary DESC
 limit 25;
 ```
-Here's a breakdown of the results for top paying skills for Data Analysts:
+### Key Insights: Highest-Paying Skills in the Job Market 💰📊
 
-**Summary:** The dataset lists 13 skills with their respective average salaries. At the high end, skills related to cloud computing and big data—AWS, Snowflake, Spark, and Hadoop—command the highest salaries. Mid-range salaries are seen with skills such as Go, Excel, Python, R, NoSQL, Flow, and MATLAB. SQL, while fundamental, sits at a lower salary tier, and Tableau has a significantly lower average salary compared to the others.
+**1️⃣ Top High-Paying Skills 🏆**
 
-:**Cloud & Big Data Premium::**
-AWS, Snowflake, Spark, and Hadoop top the salary chart. This underscores a strong market demand for cloud and big data expertise, reflecting the premium placed on scalable data architectures and distributed processing skills.
+Analyzing average salaries associated with different skills reveals the most lucrative ones:
 
-:**Advanced Programming & Analysis Valuation::**
-Python and R offer competitive compensation, reinforcing the value placed on robust programming and data analysis capabilities in modern data roles.
+**🔥 Top Tier (💰💰💰 155,500 BRL/year)**
 
-:**Divergent Salary Tiers:**
-There is a noticeable gap between the highest-paid technical skills and more foundational ones like SQL and Tableau. This suggests that while basic data querying and visualization remain essential, specialized, cutting-edge skills are rewarded with significantly higher salaries.
+- AWS – Cloud computing expertise is in high demand.
+- Snowflake – A critical tool for cloud data warehousing.
+- Spark & Hadoop – Big data processing frameworks, crucial for data engineering roles.
+
+**💡 Mid-Tier (💰💰 136,000 - 138,000 BRL/year)**
+
+- Go – A high-performance programming language used in backend and cloud services.
+- Excel – Still lucrative for business intelligence and financial roles.
+- Python & R – The go-to languages for data science and machine learning.
+
+**📊 Lower-Tier (💰 109,000 - 132,500 BRL/year)**
+
+- NoSQL & Flow – Important for database management and workflow automation.
+- Matlab – Often used in engineering and quantitative analysis.
+- SQL (109,625 BRL) – Despite its high demand, it falls behind in salary compared to Python and AWS.
+
+**🚨 Low-Paying Skill (💰 30,000 BRL/year)**
+
+- Tableau – Despite being a widely used visualization tool, it is associated with lower salaries.
+
+**2️⃣ What This Means for Your Career 🚀**
+
+- Big Data & Cloud skills (AWS, Spark, Hadoop, Snowflake) lead to the highest salaries.
+- Python & R are still highly valuable, especially for Data Science roles.
+- SQL remains essential but is not as lucrative as cloud and big data technologies.
+- Excel still commands good salaries, proving its importance in business and finance.
+- Tableau alone may not lead to high salaries but can be valuable when combined with other skills.
+
+**3️⃣ Next Steps for Career Growth 🎯**
+
+- Invest in cloud computing (AWS, Snowflake) and big data (Spark, Hadoop) to maximize salary potential.
+- Enhance Python or R skills for data science and analytics roles.
+- Combine SQL with NoSQL databases and cloud skills for a better-paying career path.
 
 ### 5. Most Optimal Skills to Learn
 
@@ -200,8 +267,45 @@ WHERE      qtd > 10
 ORDER BY   avg_salary DESC,
            qtd DESC limit 25;
 ```
+### 1️⃣ Top Skills with the Best Salary & Demand 🚀
 
-Here's a breakdown of the most optimal skills for Data Analysts in 2023:
+**🔥 Highest Paying Skills** (💰 Avg. Salary Above 120K BRL/Year)
+
+- Kafka (129,999 BRL, 40 mentions) – Essential for real-time data streaming.
+- PyTorch (125,226 BRL, 20 mentions) – A must-have for deep learning and AI.
+- Perl (124,686 BRL, 20 mentions) – Valuable in scripting, automation, and backend systems.
+- TensorFlow (120,647 BRL, 24 mentions) – Dominates machine learning and AI development.
+
+**📈 High Demand & Strong Salaries** (💰 Avg. Salary 110K-120K BRL/Year, High Mentions)
+
+- Spark (113,002 BRL, 187 mentions) – One of the most in-demand skills, key for big data processing.
+- Snowflake (111,578 BRL, 241 mentions) – Leading cloud data warehousing tool, highly valuable.
+- Hadoop (110,888 BRL, 140 mentions) – Used in big data storage and distributed computing.
+ Databricks (112,881 BRL, 102 mentions) – A top tool for big data and AI integration.
+
+**🔍 Emerging & Specialized Skills** (💰 Avg. Salary 110K+ BRL/Year, Moderate Demand)
+
+- GCP (113,065 BRL, 78 mentions) – Google's cloud platform is growing in demand.
+- Pandas (110,767 BRL, 90 mentions) – Essential for data manipulation and analysis in Python.
+- Git (112,250 BRL, 74 mentions) – Version control expertise is essential for software and data engineers.
+- MongoDB (113,608 BRL, 26 mentions) – NoSQL database rising in popularity.
+
+### 2️⃣ What This Means for Career Growth 🎯
+ ✅ If you want high salaries in AI/ML, focus on TensorFlow, PyTorch, and Spark.
+
+ ✅ Big Data is extremely valuable – Invest in Kafka, Hadoop, Snowflake, and Databricks.
+
+ ✅ Cloud platforms (AWS, GCP, Snowflake) are key for career growth in data engineering.
+
+ ✅ Master SQL, Pandas, and MongoDB if you want to excel in data analysis and database management.
+
+ ✅ Version control (Git) and automation (Perl, Shell, Unix) will enhance your backend and DevOps skills.
+
+### 3️⃣ Next Steps: Where to Focus 🚀
+- Big Data & Cloud: Learn Spark, Snowflake, and Hadoop.
+- AI & ML: Gain expertise in TensorFlow, PyTorch, and Pandas.
+- Data Engineering: Develop skills in Kafka, Airflow, Databricks, and Git.
+- Data Science & Analysis: Master SQL, MongoDB, and Python libraries.
 
 
 
