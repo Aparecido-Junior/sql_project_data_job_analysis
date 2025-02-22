@@ -13,7 +13,7 @@ select
 from job_postings_fact jf
 inner join skills_job_dim sjd on jf.job_id = sjd.job_id
 inner join skills_dim sd on sjd.skill_id = sd.skill_id
-where job_title_short = 'Data Analyst'
+where job_location in ('Australia','Brasil')
 group by skills
 ORDER BY qtd DESC
 limit 5;

@@ -12,10 +12,13 @@ select
 from job_postings_fact jf
 inner join skills_job_dim sjd on jf.job_id = sjd.job_id
 inner join skills_dim sd on sjd.skill_id = sd.skill_id
-where job_title_short = 'Data Analyst' AND
-salary_year_avg is not null
-group by skills
-ORDER BY avg_salary DESC
+where 
+  salary_year_avg is not null 
+  and job_location in ('Brasil','Australia')
+group by 
+  skills
+ORDER BY 
+  avg_salary DESC
 limit 25;
 
 select * from job_postings_fact limit 5;

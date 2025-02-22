@@ -16,10 +16,9 @@ SELECT
     cd.name as company_name
 from job_postings_fact jf
 left join company_dim cd on jf.company_id = cd.company_id
-where job_location in ('Australia','Brazil','Anywhere') 
+where job_location in ('Australia','Brazil') 
 AND salary_year_avg is not null 
-AND job_title_short = 'Data Analyst'
-order by salary_year_avg
+order by salary_year_avg desc
 limit 10;
 
 
