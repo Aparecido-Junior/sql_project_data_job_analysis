@@ -21,6 +21,31 @@ WHERE  job_location IN ( 'Australia', 'Brazil' )
 ORDER  BY salary_year_avg DESC
 LIMIT  10; 
 
+select job_title_short, salary_year_avg, job_country
+from job_postings_fact
+where job_location IN ( 'Australia', 'Brazil' ) and salary_year_avg is not null
+order by salary_year_avg desc
+limit 10;
+
+CREATE table temp_top_paying_jobs as
+SELECT job_id,
+       job_title_short,
+       job_location,
+       job_schedule_type,
+       salary_year_avg,
+       job_posted_date,
+       cd.name AS company_name
+FROM   job_postings_fact jf
+       LEFT JOIN company_dim cd
+              ON jf.company_id = cd.company_id
+WHERE  job_location IN ( 'Australia', 'Brazil' )
+       AND salary_year_avg IS NOT NULL
+ORDER  BY salary_year_avg DESC
+LIMIT  10; 
+
+select temp_top_paying_jobs;
+
+
 /*
 
 Key Insights from the Job Data 📊
