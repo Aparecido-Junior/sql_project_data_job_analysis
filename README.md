@@ -189,6 +189,7 @@ ORDER BY
   avg_salary DESC
 limit 25;
 ```
+![Skills Based on Salary](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/92c43e9cd84bb244972e6fc997876fc2dc2cf4b5/4.jpg)
 ### Key Insights: Highest-Paying Skills in the Job Market 💰📊
 
 **1️⃣ Top High-Paying Skills 🏆**
