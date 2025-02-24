@@ -27,6 +27,8 @@ where job_location IN ( 'Australia', 'Brazil' ) and salary_year_avg is not null
 order by salary_year_avg desc
 limit 10;
 
+
+-- query para criar os charts
 CREATE table temp_top_paying_jobs as
 SELECT job_id,
        job_title_short,

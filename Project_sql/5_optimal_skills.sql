@@ -42,8 +42,43 @@ WHERE      qtd > 10
 ORDER BY   avg_salary DESC,
            qtd DESC limit 25; 
 
+-- query para criacao de charts
 
-
+create table temp_optimal_skills as WITH top_skill AS
+(
+           SELECT     skills,
+                      sd.skill_id,
+                      Count(sjd.job_id) AS qtd
+           FROM       job_postings_fact jf
+           INNER JOIN skills_job_dim sjd
+           ON         jf.job_id = sjd.job_id
+           INNER JOIN skills_dim sd
+           ON         sjd.skill_id = sd.skill_id
+           WHERE      job_title_short = 'Data Analyst'
+           AND        salary_year_avg IS NOT NULL
+           GROUP BY   sd.skill_id ), top_salaries AS
+(
+           SELECT     sd.skill_id,
+                      Round(Avg(salary_year_avg),0) AS avg_salary
+           FROM       job_postings_fact jf
+           INNER JOIN skills_job_dim sjd
+           ON         jf.job_id = sjd.job_id
+           INNER JOIN skills_dim sd
+           ON         sjd.skill_id = sd.skill_id
+           WHERE      job_title_short = 'Data Analyst'
+           AND        salary_year_avg IS NOT NULL
+           GROUP BY   sd.skill_id )
+SELECT top_skill.skill_id
+           ,
+           top_skill.skills,
+           qtd,
+           avg_salary
+FROM       top_skill
+INNER JOIN top_salaries
+ON         top_skill.skill_id = top_salaries.skill_id
+WHERE      qtd > 10
+ORDER BY   avg_salary DESC,
+           qtd DESC limit 25; 
 /*
 
 1️⃣ Top Skills with the Best Salary & Demand 🚀

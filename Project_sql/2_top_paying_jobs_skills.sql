@@ -29,6 +29,30 @@ ON         sjd.skill_id = sd.skill_id
 ORDER BY   company_name; 
 
 
+-- query para criar os charts
+
+create table temp_top_paying_jobs_skills as
+ WITH top_job_location AS
+(
+          SELECT    job_id,
+                    job_title_short,
+                    salary_year_avg,
+                    cd.NAME AS company_name
+          FROM      job_postings_fact jf
+          LEFT JOIN company_dim cd
+          ON        jf.company_id = cd.company_id
+          WHERE     job_location IN ('Australia',
+                                     'Brazil')
+          AND       salary_year_avg IS NOT NULL
+          ORDER BY  salary_year_avg limit 10 )
+SELECT     jl.*,
+           sd.skills
+FROM       top_job_location jl
+INNER JOIN skills_job_dim sjd
+ON         jl.job_id = sjd.job_id
+INNER JOIN skills_dim sd
+ON         sjd.skill_id = sd.skill_id
+ORDER BY   company_name; 
 
 /*
 
