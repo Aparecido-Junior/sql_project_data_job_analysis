@@ -45,7 +45,7 @@ WHERE  job_location IN ( 'Australia', 'Brazil' )
 ORDER  BY salary_year_avg DESC
 LIMIT  10; 
 ```
-![Top Paying Roles](sql_load\assets\1.png)
+![Top Paying Roles](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/5dce5ea1dc255c72b70d0a9836480af2ad24c0d2/1.jpg)
 
 ### Key Insights from the Job Data 📊
 **1️⃣ Job Distribution by Location**
