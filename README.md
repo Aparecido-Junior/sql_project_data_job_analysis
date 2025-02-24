@@ -1,7 +1,5 @@
 # Introduction
 📊 Dive into the data job market! Focusing on data analyst roles, this project explores 💰 top-paying jobs, 🔥 in-demand skills, and 📈 where high demand meets high salary in data analytics in two countries, Australia and Brasil. 
-
-SQL queries? Check them out here: [Project_sq folder](https://github.com/Aparecido-Junior/sql_project_data_job_analysis) 
     
      
 # Background
