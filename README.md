@@ -145,7 +145,7 @@ group by skills
 ORDER BY qtd DESC
 limit 5;
 ```
-![In-Demand Skills for Data Analysts](sql_load\Project_sql\assets\3.png)
+![In-Demand Skills for Data Analysts](sql_load\Project_sql\assets\3.jpg)
 ### Key Insights: Most In-Demand Skills in Job Postings 📊🔥
 
 **1️⃣ Top 5 Most Requested Skills 🏆**
