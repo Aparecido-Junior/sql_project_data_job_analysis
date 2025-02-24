@@ -45,6 +45,7 @@ ORDER  BY salary_year_avg DESC
 LIMIT  10; 
 ```
 ![Top Paying Roles](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/5dce5ea1dc255c72b70d0a9836480af2ad24c0d2/1.jpg)
+
 _Bar graph visualizing the 5 top paying jobs for data roles in Australia and Brasil; Generated in Power BI_
 
 ### Key Insights from the Job Data 📊
@@ -145,9 +146,10 @@ ORDER BY qtd DESC
 limit 5;
 ```
 ![In-Demand Skills for Data Analysts](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/01eee26a9cb7a93c8b0b0a9623815b46383122b3/3.jpg)
-_Table of the average salary for the top 10 paying skills for data analysts_
 
 _Table of the demand for the top 5 skills in data analyst job postings_
+
+
 ### Key Insights: Most In-Demand Skills in Job Postings 📊🔥
 
 **1️⃣ Top 5 Most Requested Skills 🏆**
@@ -192,6 +194,9 @@ ORDER BY
 limit 25;
 ```
 ![Skills Based on Salary](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/92c43e9cd84bb244972e6fc997876fc2dc2cf4b5/4.jpg)
+
+_Table of the average salary for the top 10 paying skills for data analysts_
+
 ### Key Insights: Highest-Paying Skills in the Job Market 💰📊
 
 **1️⃣ Top High-Paying Skills 🏆**
