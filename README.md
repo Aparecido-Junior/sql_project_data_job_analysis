@@ -19,13 +19,14 @@ For my deep dieve into the data analyst job market, I harnessed the power of sev
 - **SQL**: The backbone of my analysis, allowing me to query the database and unearth critical insights.
 - **PostgreSQL**: The chosen database management system, ideal for handling the job posting data.
 - **Visual Studio Code**: My go-to for database management and executing SQl queries.
+- **Power BI:** The visualization tool for this project couldn't be another one.
 - **Git & Github**: Essetial for version control and sharing my SQL scripts and analysis, ensuring collaboration and project tracking.
 
 # The Analysis
 Each query for this project aimed at investigating specific aspects of the data analyst job market📊. Here's how I approached each question 🔍:
 
 ### 1. Top Paying Data Analyst Jobs
-To identify the highest-paying roles, I filtered data analyst positions by average yearly salary and location, focusing on remote jobs. This query highlights the high-paying opportunities in the field .
+To identify the highest-paying roles, I filtered data analyst positions by average yearly salary and location, focusing on remote jobs. This query highlights the high-paying opportunities in Australia and Brasil .
 
 ```sql
 SELECT job_id,
@@ -44,6 +45,7 @@ ORDER  BY salary_year_avg DESC
 LIMIT  10; 
 ```
 ![Top Paying Roles](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/5dce5ea1dc255c72b70d0a9836480af2ad24c0d2/1.jpg)
+_Bar graph visualizing shows the top paying jobs for data roles in Australia and Brasil; Generated in Power BI_
 
 ### Key Insights from the Job Data 📊
 **1️⃣ Job Distribution by Location**
@@ -55,7 +57,7 @@ LIMIT  10;
 
 - The most common roles are Senior Data Engineers (3) and Senior Data Scientists (2).
 - Other roles include Data Engineers (2), Senior Data Analysts (2), and Data Scientists (1).
-- CI&T is the most active employer, listing 5 out of 10 job postings.
+
 
 **3️⃣ Salary Insights 💰**
 
@@ -68,7 +70,6 @@ LIMIT  10;
 **4️⃣ Market Trends & Recommendations 🚀**
 
 - Companies are prioritizing senior roles. If you aim for a high-paying job, gaining expertise in data science, engineering, and analytics is crucial.
-- CI&T dominates hiring in Brazil. If you’re targeting jobs in Brazil, CI&T is a key employer to watch.
 - Data Engineers have steady demand. This role appears twice and is a solid choice for career growth.
 - Australia offers part-time flexibility. Unlike Brazil, where all jobs are full-time, Commonwealth Bank lists a part-time option.
 
