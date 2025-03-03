@@ -81,6 +81,9 @@ INNER JOIN skills_dim sd
 ON         sjd.skill_id = sd.skill_id
 ORDER BY   company_name;
 ```
+![image alt](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/473b267a2e2c31b03d1f636cc44179e61123f559/2.%20skills%20required%20for%20the%20top-paying%20roles.png)
+_Bar graph visualizing the count of skills for the top 10 paying jobs for data analysts; ChatGPT generated this graph from my SQL query results_
+
 Here's the breakdown of the most demanded skills for the top 10 highest paying data analyst jobs in 2023:
 
 ### Key Insights: Top Skills for High-Paying Jobs 💰📊
