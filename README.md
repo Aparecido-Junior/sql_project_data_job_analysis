@@ -143,7 +143,7 @@ ORDER BY
   avg_salary DESC
 limit 25;
 ```
-![Skills Based on Salary](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/92c43e9cd84bb244972e6fc997876fc2dc2cf4b5/4.jpg)
+![Skills Based on Salary](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/62d3fb9af98ae8b2e194bf52650ca9b9f7816e4c/4.%20Skills%20Based%20on%20Salary.png)
 
 _Table of the average salary for the top 10 paying skills for data analysts_
 
