@@ -194,6 +194,8 @@ WHERE      qtd > 10
 ORDER BY   avg_salary DESC,
            qtd DESC limit 25;
 ```
+![image alt](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/0ef7e2cbaa3e4f51470115f8446207e348a4e12f/5.%20Most%20Optimal%20Skills%20to%20Learn.png)
+_Table of the most optimal skills for data analyst sorted by salary_
 ### 1️⃣ Top Skills with the Best Salary & Demand 🚀
 
 Strategic Skills for Job Security & High Salaries in Data Analysis 💰📊
