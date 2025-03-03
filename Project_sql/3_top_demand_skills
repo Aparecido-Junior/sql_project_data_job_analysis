@@ -8,19 +8,28 @@ providing insights into the most valuable skills for job seekers.
 */
 
 -- Data Analyst
-select 
-    skills,
-    count(skills) as demand
-from 
-    job_postings_fact 
-inner join skills_job_dim on job_postings_fact.job_id = skills_job_dim.job_id
-inner  join skills_dim on skills_job_dim.skill_id = skills_dim.skill_id
-where job_title_short = 'Data Analyst'
-group by skills
-order by demand desc
-LIMIT 5;
+SELECT skills,
+       Count(skills) AS demand
+FROM   job_postings_fact
+       INNER JOIN skills_job_dim
+               ON job_postings_fact.job_id = skills_job_dim.job_id
+       INNER JOIN skills_dim
+               ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE  job_title_short = 'Data Analyst'
+GROUP  BY skills
+ORDER  BY demand DESC
+LIMIT  5;
 
 /*
+
+🔹  SQL Leads the Market in Demand – With 92,628 job postings, SQL remains the most 
+    essential skill for data professionals, making it a must-learn for job seekers.
+
+🔹  Excel & Python Are Key Competitors – Excel (67,031) and Python (57,326) follow 
+    closely, proving that both traditional spreadsheet skills and programming knowledge are highly valuable.
+
+🔹  Data Visualization is Critical – Tableau (46,554) and Power BI (39,468) highlight 
+    the need for strong data storytelling and dashboard creation, making visualization tools crucial for career growth.
 
 [
   {
@@ -46,13 +55,6 @@ LIMIT 5;
 ]
 
 Top 5 In-Demand Skills for Job Seekers 📊🚀
-🔹  SQL Leads the Market in Demand – With 92,628 job postings, SQL remains the most 
-    essential skill for data professionals, making it a must-learn for job seekers.
 
-🔹  Excel & Python Are Key Competitors – Excel (67,031) and Python (57,326) follow 
-    closely, proving that both traditional spreadsheet skills and programming knowledge are highly valuable.
-
-🔹  Data Visualization is Critical – Tableau (46,554) and Power BI (39,468) highlight 
-    the need for strong data storytelling and dashboard creation, making visualization tools crucial for career growth.
 
 */
