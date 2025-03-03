@@ -110,7 +110,7 @@ group by skills
 ORDER BY qtd DESC
 limit 5;
 ```
-![In-Demand Skills for Data Analysts](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/01eee26a9cb7a93c8b0b0a9623815b46383122b3/3.jpg)
+![In-Demand Skills for Data Analysts](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/83a1570e7393eed0ae5a299e58f88a464b4f6310/3.%20In-Demand%20Skills%20for%20Data%20Analysts.png)
 
 _Table of the demand for the top 5 skills in data analyst job postings_
 
