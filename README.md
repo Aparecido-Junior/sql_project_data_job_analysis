@@ -43,8 +43,8 @@ WHERE  job_location IN ( 'Australia', 'Brazil' )
 ORDER  BY salary_year_avg DESC
 LIMIT  10; 
 ```
-
-_Bar graph visualizing the 5 top paying jobs for data roles in Australia and Brasil; Generated in Power BI_
+![image alt](https://github.com/Aparecido-Junior/sql_project_data_job_analysis/blob/195d2801f7c80bfdfec8e0462054f9a03518ca70/1.%20Top%20Paying%20Data%20Analyst%20Jobs.png)
+_Bar graph visualizing the salary for the top 10 salaries for data analysts; ChatGPT generated this graph from my SQL query results_
 
 ### Key Insights from the Job Data 📊
 
